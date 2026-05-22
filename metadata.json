@@ -1,0 +1,6 @@
+{
+  "name": "Karke Dikhaunga",
+  "description": "A gamified, local-first Android habit tracker with Gemini-powered motivation, past entry logging, busy-day exclusions, custom completion stats, and interactive analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
