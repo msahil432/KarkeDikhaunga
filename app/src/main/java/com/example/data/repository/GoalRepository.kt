@@ -1,12 +1,5 @@
 package com.example.data.repository
 
-import android.util.Log
-import com.example.BuildConfig
-import com.example.data.api.Content
-import com.example.data.api.GenerateContentRequest
-import com.example.data.api.GeminiClient
-import com.example.data.api.GenerationConfig
-import com.example.data.api.Part
 import com.example.data.local.GoalDao
 import com.example.data.model.UserProfile
 import com.example.data.model.Goal
@@ -303,41 +296,14 @@ class GoalRepository(private val goalDao: GoalDao) {
         goalDao.insertProfile(currentProfile.copy(totalXp = newXp, level = newLevel))
     }
 
-    // --- On-Device AI: Live Gemini REST + Creative Contextual Generator Fallback ---
+    // --- On-Device AI: Contextual Motivation Generator ---
     suspend fun getMotivationalFeedback(goalName: String): String = withContext(Dispatchers.IO) {
         val profile = goalDao.getUserProfileSync()
         val name = profile?.name ?: "Mitra"
         val style = profile?.motivationStyle ?: "balanced"
 
-        val apiKey = try {
-            BuildConfig.GEMINI_API_KEY
-        } catch (e: Exception) {
-            ""
-        }
 
-        if (apiKey.isNotBlank() && apiKey != "MY_GEMINI_API_KEY") {
-            try {
-                val systemPrompt = "You are the companion of an Android Habit tracker app named 'Karke Dikhaunga' (which means 'I'll prove it by doing'). The user's name is $name. Their preferred motivation style is $style. Generate a highly personalized, super catchy 1-sentence motivational reminder/feedback for their goal: '$goalName'. Respond strictly in under 18 words, in a conversational voice that fits their style. Do not use markdown."
-                val instructions = Content(parts = listOf(Part(text = "Keep it concise, punchy, and highly engaging. Return only the quote.")))
-                
-                val request = GenerateContentRequest(
-                    contents = listOf(Content(parts = listOf(Part(text = "Generate motivation for goal: $goalName")))),
-                    systemInstruction = instructions,
-                    generationConfig = GenerationConfig(temperature = 0.85f, maxOutputTokens = 60)
-                )
-
-                // Call direct REST model
-                val response = GeminiClient.service.generateContent(apiKey, request)
-                val quote = response.candidates?.firstOrNull()?.content?.parts?.firstOrNull()?.text
-                if (!quote.isNullOrBlank()) {
-                    return@withContext quote.trim().replace("\"", "")
-                }
-            } catch (e: Exception) {
-                Log.e("GoalRepository", "Gemini API failed, using native template system: ${e.message}")
-            }
-        }
-
-        // Stellar offline template fallback tailored with rich contextual styles!
+        // Using on-device logic for motivation generation
         return@withContext getOfflineMotivation(name, style, goalName)
     }
 
