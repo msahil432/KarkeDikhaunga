@@ -1,4 +1,4 @@
-package com.example
+package com.msahil432.tracker
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider

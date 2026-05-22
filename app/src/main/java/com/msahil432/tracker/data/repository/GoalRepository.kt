@@ -1,11 +1,13 @@
-package com.example.data.repository
+package com.msahil432.tracker.data.repository
 
-import com.example.data.local.GoalDao
-import com.example.data.model.UserProfile
-import com.example.data.model.Goal
-import com.example.data.model.GoalEntry
-import com.example.data.model.DayStatus
-import com.example.data.model.Achievement
+import com.msahil432.tracker.data.local.GoalDao
+import com.msahil432.tracker.data.model.UserProfile
+import com.msahil432.tracker.data.model.Goal
+import com.msahil432.tracker.data.model.GoalEntry
+import com.msahil432.tracker.data.model.DayStatus
+import com.msahil432.tracker.data.model.Achievement
+import com.google.mlkit.genai.common.FeatureStatus
+import com.google.mlkit.genai.prompt.Generation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
@@ -16,6 +18,8 @@ import java.util.Date
 import java.util.Locale
 
 class GoalRepository(private val goalDao: GoalDao) {
+
+    private val generativeModel by lazy { Generation.getClient() }
 
     // --- Reactive Flows ---
     val userProfile: Flow<UserProfile?> = goalDao.getUserProfile()
@@ -302,6 +306,19 @@ class GoalRepository(private val goalDao: GoalDao) {
         val name = profile?.name ?: "Mitra"
         val style = profile?.motivationStyle ?: "balanced"
 
+        // Try to generate a motivational feedback using on-device AI capabilities
+        try {
+            if (generativeModel.checkStatus() == FeatureStatus.AVAILABLE) {
+                val prompt = "You are the companion of an Android Habit tracker app named 'Karke Dikhaunga' (which means 'I'll prove it by doing'). The user's name is \$name. Their preferred motivation style is \$style. Generate a highly personalized, super catchy 1-sentence motivational reminder/feedback for their goal: '\$goalName'. Respond strictly in under 18 words, in a conversational voice that fits their style. Do not use markdown."
+                val response = generativeModel.generateContent(prompt)
+                val text = response.candidates.firstOrNull()?.text
+                if (!text.isNullOrBlank()) {
+                    return@withContext text.trim().replace("\"", "")
+                }
+            }
+        } catch (_: Exception) {
+            // Fallback to local templates
+        }
 
         // Using on-device logic for motivation generation
         return@withContext getOfflineMotivation(name, style, goalName)

@@ -1,4 +1,4 @@
-package com.example.ui.screens
+package com.msahil432.tracker.ui.screens
 
 import android.widget.Toast
 import androidx.compose.animation.*
@@ -42,14 +42,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.example.data.model.UserProfile
-import com.example.data.model.Goal
-import com.example.data.model.GoalEntry
-import com.example.data.model.DayStatus
-import com.example.data.model.Achievement
-import com.example.ui.viewmodel.AppTab
-import com.example.ui.viewmodel.GoalViewModel
-import com.example.ui.viewmodel.SubScreen
+import com.msahil432.tracker.data.model.UserProfile
+import com.msahil432.tracker.data.model.Goal
+import com.msahil432.tracker.data.model.GoalEntry
+import com.msahil432.tracker.data.model.DayStatus
+import com.msahil432.tracker.data.model.Achievement
+import com.msahil432.tracker.ui.viewmodel.AppTab
+import com.msahil432.tracker.ui.viewmodel.GoalViewModel
+import com.msahil432.tracker.ui.viewmodel.SubScreen
 import java.text.SimpleDateFormat
 import java.util.*
 

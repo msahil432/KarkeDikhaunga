@@ -1,14 +1,14 @@
-package com.example.data.local
+package com.msahil432.tracker.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.data.model.UserProfile
-import com.example.data.model.Goal
-import com.example.data.model.GoalEntry
-import com.example.data.model.DayStatus
-import com.example.data.model.Achievement
+import com.msahil432.tracker.data.model.UserProfile
+import com.msahil432.tracker.data.model.Goal
+import com.msahil432.tracker.data.model.GoalEntry
+import com.msahil432.tracker.data.model.DayStatus
+import com.msahil432.tracker.data.model.Achievement
 
 @Database(
     entities = [

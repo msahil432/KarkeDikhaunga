@@ -1,4 +1,4 @@
-package com.example
+package com.msahil432.tracker
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,10 +18,10 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.ui.screens.*
-import com.example.ui.theme.MyApplicationTheme
-import com.example.ui.viewmodel.AppTab
-import com.example.ui.viewmodel.GoalViewModel
+import com.msahil432.tracker.ui.screens.*
+import com.msahil432.tracker.ui.theme.MyApplicationTheme
+import com.msahil432.tracker.ui.viewmodel.AppTab
+import com.msahil432.tracker.ui.viewmodel.GoalViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

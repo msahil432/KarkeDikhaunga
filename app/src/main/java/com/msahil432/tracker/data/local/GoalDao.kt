@@ -1,4 +1,4 @@
-package com.example.data.local
+package com.msahil432.tracker.data.local
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,11 +6,11 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.data.model.UserProfile
-import com.example.data.model.Goal
-import com.example.data.model.GoalEntry
-import com.example.data.model.DayStatus
-import com.example.data.model.Achievement
+import com.msahil432.tracker.data.model.UserProfile
+import com.msahil432.tracker.data.model.Goal
+import com.msahil432.tracker.data.model.GoalEntry
+import com.msahil432.tracker.data.model.DayStatus
+import com.msahil432.tracker.data.model.Achievement
 import kotlinx.coroutines.flow.Flow
 
 @Dao

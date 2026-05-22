@@ -1,4 +1,4 @@
-package com.example
+package com.msahil432.tracker
 
 import org.junit.Assert.*
 import org.junit.Test

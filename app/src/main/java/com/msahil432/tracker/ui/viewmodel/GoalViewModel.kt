@@ -1,15 +1,15 @@
-package com.example.ui.viewmodel
+package com.msahil432.tracker.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.local.AppDatabase
-import com.example.data.model.UserProfile
-import com.example.data.model.Goal
-import com.example.data.model.GoalEntry
-import com.example.data.model.DayStatus
-import com.example.data.model.Achievement
-import com.example.data.repository.GoalRepository
+import com.msahil432.tracker.data.local.AppDatabase
+import com.msahil432.tracker.data.model.UserProfile
+import com.msahil432.tracker.data.model.Goal
+import com.msahil432.tracker.data.model.GoalEntry
+import com.msahil432.tracker.data.model.DayStatus
+import com.msahil432.tracker.data.model.Achievement
+import com.msahil432.tracker.data.repository.GoalRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
