@@ -34,6 +34,7 @@ okhttp = "4.10.0"
 moshiKotlin = "1.15.2"
 moshiKotlinCodegen = "1.15.2"
 datastorePreferences = "1.1.7"
+health-connect-client = "1.1.0"
 robolectric = "4.16.1"
 roborazzi = "1.59.0"
 firebaseBom = "34.12.0"
@@ -89,6 +90,7 @@ roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "robora
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-ai = { group = "com.google.firebase", name = "firebase-ai" }
 mlkit-genai-prompt = { group = "com.google.mlkit", name = "genai-prompt", version.ref = "mlkitGenaiPrompt" }
+androidx-health-connect-client = { group = "androidx.health.connect", name = "connect-client", version.ref = "health-connect-client" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

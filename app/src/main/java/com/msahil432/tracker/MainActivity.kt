@@ -59,6 +59,13 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                         )
+                    } else if (!profile.permissionsOnboarded) {
+                        // Profile exists but permissions not yet onboarded
+                        com.msahil432.tracker.ui.onboarding.OnboardingScreen(
+                            onComplete = {
+                                viewModel.completePermissionsOnboarding()
+                            }
+                        )
                     } else {
                         // Active Main Habit Tracker
                         val currentTab by viewModel.currentTab.collectAsState()

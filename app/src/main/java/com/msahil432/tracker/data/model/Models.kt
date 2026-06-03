@@ -22,7 +22,8 @@ data class UserProfile(
     val wakeReminderEnabled: Boolean = true,
     val defaultReminderMode: String = "notification", // notification, popup, none
     val defaultSound: String = "Default",
-    val defaultVibration: Boolean = true
+    val defaultVibration: Boolean = true,
+    val permissionsOnboarded: Boolean = false
 )
 
 @Entity(tableName = "goals")

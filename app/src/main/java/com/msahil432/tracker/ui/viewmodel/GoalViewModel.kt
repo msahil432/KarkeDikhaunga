@@ -134,12 +134,21 @@ class GoalViewModel(application: Application) : AndroidViewModel(application) {
                 defaultSound = sound,
                 defaultVibration = vibration,
                 totalXp = 0,
-                level = 1
+                level = 1,
+                permissionsOnboarded = false
             )
             repository.saveProfile(defaultProfile)
             
             // Seed 3 starter achievements so the user does not start completely empty
             repository.checkAndUnlockMilestones()
+        }
+    }
+
+    fun completePermissionsOnboarding() {
+        viewModelScope.launch {
+            userProfile.value?.let { profile ->
+                repository.saveProfile(profile.copy(permissionsOnboarded = true))
+            }
         }
     }
 
